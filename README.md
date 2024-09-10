@@ -1,8 +1,11 @@
-Tautan Aplikasi
-Aplikasi PWS yang sudah di-deploy dapat diakses melalui tautan berikut: Tautan Aplikasi PWS
+Gabriel S. A. Fenanlampir
+2306315516
+Ilkom
+PBP tugas 2
 
-Implementasi Checklist
-Berikut adalah langkah-langkah implementasi checklist secara step-by-step:
+
+
+link PWS dapat diakses disini: https://gabriel-selwas-tugas2.pbp.cs.ui.ac.id/
 
 Persiapan Lingkungan Pengembangan
 
