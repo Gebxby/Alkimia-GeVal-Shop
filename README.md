@@ -1,52 +1,118 @@
-Proyek Django - Aplikasi Main
-Tautan Aplikasi yang Sudah Dideploy
-Aplikasi PWS - Main (Ganti dengan tautan yang sesuai setelah deployment).
+Tautan Aplikasi
+Aplikasi PWS yang sudah di-deploy dapat diakses melalui tautan berikut: Tautan Aplikasi PWS
 
-Implementasi Checklist Secara Step-by-Step
-Membuat Proyek Django Baru
-Saya membuat proyek baru dengan django-admin startproject dan memastikan virtual environment aktif sebelum mulai instalasi dan pembuatan proyek.
+Implementasi Checklist
+Berikut adalah langkah-langkah implementasi checklist secara step-by-step:
 
-Membuat Aplikasi 'main'
-Aplikasi main dibuat dengan perintah python manage.py startapp main. Saya menambahkan aplikasi ini ke dalam INSTALLED_APPS di settings.py agar diakui oleh Django.
+Persiapan Lingkungan Pengembangan
 
-Routing Aplikasi ke Proyek
-Pada urls.py proyek utama, saya melakukan routing menggunakan include sehingga aplikasi main dapat diakses melalui root URL proyek.
+Install Python dan pip (Package Installer for Python).
+Buat dan aktifkan virtual environment untuk mengisolasi dependensi proyek.
+Install Django menggunakan pip: pip install django.
+Membuat Proyek Django
 
-Membuat Model 'Product'
-Saya membuat model Product di models.py dengan atribut name, price, dan description. Setelah itu, saya menjalankan perintah makemigrations dan migrate untuk membuat tabel di database.
+Buat proyek baru dengan perintah: django-admin startproject nama_proyek.
+Masuk ke direktori proyek dengan cd nama_proyek.
+Membuat Aplikasi Django
 
-Membuat Fungsi di Views untuk Menampilkan Data
-Pada views.py, saya menulis fungsi show_info yang mengembalikan template HTML yang menampilkan nama aplikasi, nama saya, dan kelas saya.
+Buat aplikasi baru dalam proyek dengan perintah: python manage.py startapp nama_aplikasi.
+Daftarkan aplikasi di settings.py proyek dengan menambahkannya ke INSTALLED_APPS.
+Membuat Model
 
-Routing Fungsi di views.py
-Saya menambahkan URL untuk mengakses fungsi show_info pada urls.py aplikasi main dengan menambahkan path 'info/'.
+Definisikan model di models.py dalam aplikasi, misalnya:
+'''
+<from django.db import models
 
-Deployment ke PWS
-Saya menyiapkan aplikasi untuk deployment dengan membuat Procfile dan requirements.txt, lalu menggunakan perintah cf push untuk mengunggah aplikasi ke PWS sehingga dapat diakses oleh umum.
+<class Artikel(models.Model):
+    judul = models.CharField(max_length=100)
+    isi = models.TextField()
+    tanggal_dibuat = models.DateTimeField(auto_now_add=True)>
+'''
+<from django.db import models
 
-Bagan Request Client ke Web Aplikasi Django
-Berikut adalah bagan proses request dan respon dalam aplikasi Django:
+<class Artikel(models.Model):
+    judul = models.CharField(max_length=100)
+    isi = models.TextField()
+    tanggal_dibuat = models.DateTimeField(auto_now_add=True)>
+'''
+Migrasi Database
 
-rust
-Copy code
-Client Request --> URLS.PY --> VIEWS.PY --> MODELS.PY --> Template HTML --> Client Response
-Penjelasan Kaitan Antara urls.py, views.py, models.py, dan Template HTML:
-urls.py: Menerima permintaan dari client dan memetakan URL tersebut ke fungsi yang ada di views.py.
-views.py: Memproses permintaan dari client, mengambil data dari model (jika diperlukan), dan mengembalikan respon berupa template HTML.
-models.py: Berfungsi sebagai penghubung antara aplikasi dan database. Dalam hal ini, model Product digunakan untuk menyimpan dan mengelola data produk.
-Template HTML: Digunakan untuk menampilkan data yang telah diambil oleh views.py kepada client dalam bentuk antarmuka web.
+Jalankan perintah python manage.py makemigrations untuk membuat file migrasi.
+Terapkan migrasi dengan python manage.py migrate untuk membuat tabel di database.
+Membuat View dan URL
+
+Definisikan view di views.py, misalnya:
+
+'''
+<from django.shortcuts import render
+from .models import Artikel
+
+<def daftar_artikel(request):
+    artikel_list = Artikel.objects.all()
+    return render(request, 'daftar_artikel.html', {'artikel_list': artikel_list})>
+'''
+Daftarkan URL di urls.py aplikasi:
+'''
+<from django.urls import path
+from . import views
+
+<urlpatterns = [
+    path('artikel/', views.daftar_artikel, name='daftar_artikel'),
+]>
+'''
+
+Buat template HTML di direktori templates, misalnya daftar_artikel.html:
+
+'''
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Daftar Artikel</title>
+</head>
+<body>
+    <h1>Daftar Artikel</h1>
+    <ul>
+    {% for artikel in artikel_list %}
+        <li>{{ artikel.judul }} - {{ artikel.isi }}</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
+
+'''
+
+Pengujian dan Deploy
+
+Jalankan server pengembangan dengan python manage.py runserver dan uji aplikasi di browser.
+Untuk deployment, gunakan platform seperti Heroku, DigitalOcean, atau lainnya.
+*Bagan Arsitektur Web Django*
+Berikut adalah bagan sederhana dari request client ke web aplikasi berbasis Django:
+
+'''<Client Request --> <URLs (urls.py) --> <Views (views.py) --> <Models (models.py) --> <HTML (templates)>'''
+
+Penjelasan:
+
+*urls.py:* Menyediakan rute URL yang mengarahkan request client ke view yang sesuai.
+*views.py:* Menangani logika aplikasi, memproses data menggunakan model, dan mengembalikan response dalam bentuk template HTML.
+*models.py:* Mengelola data dan interaksi dengan database.
+*Templates (HTML):* Menyajikan data yang dikirimkan oleh view dalam format HTML kepada client.
 Fungsi Git dalam Pengembangan Perangkat Lunak
-Git adalah sistem kontrol versi yang sangat penting dalam pengembangan perangkat lunak. Beberapa fungsinya:
+Git adalah sistem kontrol versi yang digunakan untuk melacak perubahan dalam kode sumber proyek. Fungsinya mencakup:
 
-Versi dan Riwayat: Git memungkinkan pengembang untuk melacak semua perubahan kode dari waktu ke waktu. Setiap commit merupakan snapshot dari proyek.
-Kolaborasi: Git memfasilitasi kerja tim, di mana beberapa pengembang bisa bekerja di bagian yang berbeda dari kode secara bersamaan tanpa saling mengganggu.
-Cabang (Branching): Git memungkinkan pembuatan cabang untuk mengembangkan fitur baru atau memperbaiki bug tanpa mempengaruhi versi utama.
-Revert: Jika ada kesalahan, Git memudahkan untuk kembali ke versi kode yang stabil.
-Kenapa Framework Django Dipilih?
-Django adalah pilihan framework yang sangat populer untuk pembelajaran pengembangan perangkat lunak karena:
+*Versi Kontrol:* Mengelola dan menyimpan versi kode yang berbeda.
+*Kolaborasi:* Memungkinkan banyak developer bekerja pada proyek yang sama secara bersamaan.
+*Branching dan Merging:* Membantu membuat cabang pengembangan terpisah dan menggabungkannya kembali setelah selesai.
+*Histori Perubahan:* Menyimpan riwayat perubahan kode untuk referensi dan pemulihan di masa depan.
+Mengapa Memulai Dengan Django?
+Django adalah framework yang ideal untuk pemula karena:
 
-Komprehensif: Django menyediakan banyak fitur bawaan seperti ORM, templating engine, dan admin interface, yang memudahkan pengembang pemula untuk belajar.
-Baterai Terpasang: Django menerapkan prinsip "batteries included," artinya framework ini sudah siap pakai dengan semua fitur penting untuk mengembangkan aplikasi web tanpa harus menginstal banyak komponen tambahan.
-Modular dan Terstruktur: Django memiliki arsitektur yang terorganisir (MTV: Model, Template, View), memudahkan developer untuk mengerti alur pengembangan perangkat lunak.
-Mengapa Model pada Django Disebut Sebagai ORM?
-Model pada Django disebut ORM (Object-Relational Mapping) karena memungkinkan pengembang untuk berinteraksi dengan database menggunakan objek Python. Dengan ORM, kita tidak perlu menulis kueri SQL secara manual. Sebagai gantinya, kita bisa bekerja dengan model Python dan Django akan secara otomatis mengkonversi tindakan pada objek model menjadi instruksi SQL yang relevan. ORM mempermudah developer dalam mengelola database tanpa perlu mengetahui detail teknis SQL.
+*Dokumentasi Lengkap:* Menyediakan panduan yang komprehensif dan mudah dipahami.
+*Batteries Included:* Menyediakan banyak fitur bawaan seperti admin panel, autentikasi, dan ORM yang mempermudah pengembangan.
+*Struktur Proyek Jelas:* Mengikuti prinsip desain yang memudahkan pemahaman alur kerja dan pengembangan aplikasi web.
+
+Mengapa Model pada Django Disebut ORM?
+Model pada Django disebut ORM (Object-Relational Mapping) karena:
+
+*Abstraksi Database:* Menghubungkan objek Python dengan tabel database, sehingga developer tidak perlu menulis SQL langsung.
+*Pengelolaan Data:* Memudahkan operasi CRUD (Create, Read, Update, Delete) dengan menggunakan metode Python standar.
+*Pemetaan Objek:* Mengonversi data antara format database dan objek Python dengan cara yang transparan.
