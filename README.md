@@ -1,7 +1,16 @@
-Gabriel S. A. Fenanlampir
-2306315516
-Ilkom
-PBP tugas 2
+NAMA : Gabriel S. A. Fenanlampir
+
+
+NPM : 2306315516
+
+
+JURUSAN : Ilmu komputer 
+
+
+KELAS : PBP E 
+
+
+TUGAS 2 : e-shop
 
 
 
