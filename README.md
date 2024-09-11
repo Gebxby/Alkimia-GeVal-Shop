@@ -74,6 +74,7 @@ Definisikan view di views.py, misalnya:
 Buat template HTML di direktori templates, misalnya daftar_artikel.html:
 
 ```mermaid
+    graph TD;
                 <!DOCTYPE html>
                 <html>
                 <head>
