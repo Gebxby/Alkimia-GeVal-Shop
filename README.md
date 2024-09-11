@@ -32,7 +32,7 @@ Daftarkan aplikasi di settings.py proyek dengan menambahkannya ke INSTALLED_APPS
 Membuat Model
 
 Definisikan model di models.py dalam aplikasi, misalnya:
-```mermaid
+```
             <from django.db import models
 
             <class Artikel(models.Model):
@@ -55,7 +55,7 @@ Membuat View dan URL
 
 Definisikan view di views.py, misalnya:
 
-```mermaid
+```
             from django.shortcuts import render
             from .models import Artikel
 
@@ -73,8 +73,7 @@ Definisikan view di views.py, misalnya:
 
 Buat template HTML di direktori templates, misalnya daftar_artikel.html:
 
-```mermaid
-    graph TD;
+```
                 <!DOCTYPE html>
                 <html>
                 <head>
