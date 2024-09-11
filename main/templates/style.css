@@ -1,4 +1,4 @@
-/* Reset default browser styling */
+
 * {
     margin: 0;
     padding: 0;
@@ -6,13 +6,13 @@
     font-family: 'Arial', sans-serif;
   }
   
-  /* Body background and header styling */
+  /* Body background dan header  */
   body {
     background-color: #0F0F00;
     padding: 20px;
   }
   
-  /* Header styling */
+  /* Header */
   .header {
     background-color: #333;
     color: white;
@@ -32,7 +32,7 @@
     font-size: 18px;
   }
   
-  /* Intro section styling */
+  /* Intro section */
   .intro-section {
     text-align: center;
     color: white;
@@ -75,7 +75,7 @@
     border-radius: 5px;
   }
   
-  /* Product grid styling */
+  /* Product grid*/
   .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -122,7 +122,7 @@
     background-color: #333;
   }
   
-  /* Footer styling (if added later) */
+  /* Footer styling */
   footer {
     text-align: center;
     padding: 10px;
