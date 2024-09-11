@@ -10,7 +10,7 @@ JURUSAN : Ilmu komputer
 KELAS : PBP E 
 
 
-TUGAS 2 : e-shop
+TUGAS 2 : e-shop Alkimia GaVel Shop
 
 
 
@@ -60,9 +60,12 @@ Definisikan view di views.py, misalnya:
             from .models import Artikel
 
             def daftar_artikel(request):
-            artikel_list = Artikel.objects.all()
-            return render(request, 'daftar_artikel.html,{'artikel_list': artikel_list}
+                artikel_list = Artikel.objects.all()
+                return render(request, 'daftar_artikel.html,{'artikel_list': artikel_list}
+
+
             Daftarkan URL di urls.py aplikasi:
+            
             <from django.urls import path
             from . import views
 
