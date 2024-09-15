@@ -1,13 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>TOKO ALKIMIA GAVEL</title>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-	<header class = "header">
+	{% block content %}	<header class = "header">
 		<div class = "intro">
 		<h1>Alkimia GaVel Shop</h1>
 		<p>"Tempat Belanja Online, Dimana Magis Bertemu dengan Sains"</p>
@@ -25,7 +26,7 @@
 	<div class="product-grid">
 		<div class = "product">
 			<h3>gigi Vibraniaum</h3>
-			<img src="C:\Users\Gabriel\Desktop\image\gigipalsu.png"width = "200">
+			<img src="{% static 'image/gigipalsu.png' %}"width = "200">
 			<p>200000000000</p>
 			<p>deskripsi :</p>
 			<p>gigi palsu yang terbuat dari bahan logam vibranium, mampu mengunyah kulit naga</p>
@@ -33,9 +34,9 @@
 		</div>
 		<br><br><br>
 		<div class = "product">
-			<!-- <img src="C:\Users\Gabriel\Desktop\image\skullparfume.png"width = "200"> -->
+			<!-- <img src="\image\skullparfume.png"width = "200"> -->
 			<h3>parfum bunga arwah</h3>
-			<img src="C:\Users\Gabriel\Desktop\image\skullparfume.png"width = "200">
+			<img src="{% static 'image/skullparfume.png' %}"width = "200">
 			<p>2670000</p>
 			<p>deskripsi :</p>
 			<p>parfum ini dapat membawa anda masuk ke dalam dunia arwah, dan sangat bermanfaat saat medium</p>
@@ -44,7 +45,7 @@
 		<br><br><br>
 		<div class = "product">
 			<h3>ramuan putri salju</h3>
-			<img src="C:\Users\Gabriel\Desktop\image\ramuan.png"width = "200">
+			<img src="{% static 'image/ramuan.png' %}"width = "200">
 			<p>600500</p>
 			<p>deskripsi :</p>
 			<p>ramuan ini mampu membuat seseorang abadi</p>
@@ -53,7 +54,7 @@
 		<br><br><br>
 		<div class = "product">
 			<h3>kapur neraka</h3>
-			<img src="C:\Users\Gabriel\Desktop\image\kapur1.png"width = "200">
+			<img src="{% static 'image/kapur1.png' %}"width = "200">
 			<p>1000</p>
 			<p>deskripsi :</p>
 			<p>kapur yang berguna untuk menjalankan ritual pemanggilan</p>
@@ -62,7 +63,7 @@
 		<br><br><br>
 		<div class = "product">
 			<h3>batu air mata naga</h3>
-			<img src="C:\Users\Gabriel\Desktop\image\airmatanaga1.png"width = "200">
+			<img src="{% static 'image/airmatanaga1.png' %}"width = "200">
 			<p>80000000</p>
 			<p>deskripsi :</p>
 			<p>air mata naga yang mengeras. biasanya dipakai dalam ritual ritual pembangkit</p>
@@ -71,7 +72,7 @@
 		<br><br><br>
 		<div class = "product">
 			<h3>kitab arwah raja raja</h3>
-			<img src="C:\Users\Gabriel\Desktop\image\book.png" width = "200">
+			<img src="{% static 'image/book.png' %}" width = "200">
 			<p>700000</p>
 			<p>deskripsi :</p>
 			<p>kitab yang konon di pegang oleh raja raja untuk bisa berjaya</p>
@@ -80,7 +81,7 @@
 		<br><br><br>
 		<div class = "product">
 			<h3>serangga emas</h3>
-			<img src="\Users\Gabriel\Desktop\image\serangga1.png" width = "200">
+			<img src="{% static 'image/serangga1.png' %}" width = "200">
 			<p>125000000</p>
 			<p>deskripsi :</p>
 			<p>membantu dan berkhasiat dalam menyembuhkan banyak penyakit</p>
@@ -89,13 +90,44 @@
 		<br><br><br>
 		<div class = "product">
 			<h3>Jam saku Jimat</h3>
-			<img src="\Users\Gabriel\Desktop\image\jimat.png" width = "200">
+			<img src="{% static 'image/jimat.png' %}" width = "200">
 			<p>125000000</p>
 			<p>deskripsi :</p>
 			<p>jam tua yang diyakini mempunyai kemampuan membawa keberuntungan, orang orang menyebutnya jam jimat</p>
 			<button>beli</button>
 		</div>
 	</div>
+	{% if not menu_entries %}
+	<p>Belum ada data pada toko.</p>
+	{% else %}
+	<table>
+	  <tr>
+		<th>Menu Name</th>
+		<th>Price</th>
+		<th>Description</th>
+	  </tr>
+	
+	  {% comment %} Berikut cara memperlihatkan data menu di bawah baris ini 
+	  {% endcomment %} 
+	  {% for menu_entry in menu_entries %}
+	  <tr>
+		<td>{{menu_entry.menu}}</td>
+		<td>{{menu_entry.price}}</td>
+		<td>{{menu_entry.description}}</td>
+	  </tr>
+	  {% endfor %}
+	</table>
+	{% endif %}
+	
+	<br />
+	
+	<a href="{% url 'main:create_menu' %}">
+	  <button>Add New Menu Entry</button>
+	</a>
+
+{% endblock content %}
+
 
 </body>
 </html>
+
