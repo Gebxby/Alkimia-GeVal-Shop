@@ -181,5 +181,5 @@ A: saya mengimplementasinya selain dari tutorial dan juga dari stackoverflow, se
 
 
 
-![image info](image/JSONpostman.png)
-![image info](image/XMLpostman.png)
+![image info](main/static/image/JSONpostman.png)
+![image info](main/static/image/XMLpostman.png)
