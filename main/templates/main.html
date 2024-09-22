@@ -7,6 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>TOKO ALKIMIA GAVEL</title>
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	
 </head>
 <body>
 	{% block content %}	<header class = "header">
@@ -112,7 +113,7 @@
 	  {% endcomment %} 
 	  {% for menu_entry in menu_entries %}
 	  <tr>
-		<td>{{menu_entry.menu}}</td>
+		<td>{{menu_entry.name}}</td>
 		<td>{{menu_entry.price}}</td>
 		<td>{{menu_entry.description}}</td>
 	  </tr>
@@ -125,6 +126,10 @@
 	<a href="{% url 'main:create_menu' %}">
 	  <button>Add New Menu Entry</button>
 	</a>
+	<a href="{% url 'main:logout' %}">
+		<button>Logout</button>
+	</a>
+	<h5>Sesi terakhir login: {{ last_login }}</h5>
 
 {% endblock content %}
 
