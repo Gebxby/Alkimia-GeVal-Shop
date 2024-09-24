@@ -26,7 +26,7 @@ def show_main(request):
         'stock' : '30',
         'menu_entries' : menu_entries,
         'last_login': request.COOKIES['last_login'],
-
+        
     }
 
     return render(request, "main.html", context)
