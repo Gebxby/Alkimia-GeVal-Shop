@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect   # Tambahkan import redirect di baris ini
+from django.shortcuts import render, redirect, reverse  # Tambahkan import redirect di baris ini
 from main.forms import MenutokoForm
 from main.models import Menutoko
 from django.http import HttpResponse
@@ -90,3 +90,25 @@ def logout_user(request):
     response.delete_cookie('last_login')
     return response
 
+def edit_menu(request, id):
+    # Get mood entry berdasarkan id
+    menu = Menutoko.objects.get(pk = id)
+
+    # Set mood entry sebagai instance dari form
+    form = MenutokoForm(request.POST or None, instance=menu)
+
+    if form.is_valid() and request.method == "POST":
+        # Simpan form dan kembali ke halaman awal
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "edit_menu.html", context)
+
+def delete_menu(request, id):
+    # Get mood berdasarkan id
+    menu = Menutoko.objects.get(pk = id)
+    # Hapus menu
+    menu.delete()
+    # Kembali ke halaman awal
+    return HttpResponseRedirect(reverse('main:show_main'))

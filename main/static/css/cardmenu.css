@@ -1,0 +1,43 @@
+/* Container grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Kartu menu */
+  .card {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Set height dan overflow untuk deskripsi panjang */
+  .card-description {
+    flex-grow: 1;
+    max-height: 100px; /* Batasi tinggi maksimal */
+    overflow: hidden; /* Jika terlalu panjang, sembunyikan */
+    text-overflow: ellipsis; /* Tambahkan "..." jika teks terlalu panjang */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Batasi jumlah baris */
+    -webkit-box-orient: vertical;
+  }
+  
+  /* Tombol edit dan hapus */
+  .card-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+  
