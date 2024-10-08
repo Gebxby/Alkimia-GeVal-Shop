@@ -358,3 +358,52 @@ Menerapkan Flexbox dan Grid Layout: Saya memulai dengan Flexbox untuk membuat ta
 Evaluasi dan Pengujian: Setelah menerapkan setiap konsep, saya melakukan pengujian pada berbagai ukuran layar dan perangkat untuk memastikan fungsionalitas dan tampilan sesuai dengan yang diharapkan.
 
 Dengan mengikuti langkah-langkah tersebut, saya mampu mengimplementasikan setiap konsep dengan pemahaman yang lebih mendalam, bukan hanya mengikuti tutorial secara pasif, tetapi benar-benar memahami cara kerjanya dalam konteks proyek.
+
+
+
+1. kegunaan pengunaan JavaScript dalam pengembangan aplikasi web
+    Fungsi mendukung penggunaan ulang kode, meningkatkan organisasi dan keterbacaan kode, memfasilitasi pengiriman parameter dan nilai pengembalian, menyederhanakan pemeliharaan dan penelusuran kesalahan kode, serta menegakkan cakupan 
+
+2. Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
+    fetch() adalah fungsi JavaScript yang digunakan untuk melakukan request ke server, dan ia bersifat asynchronous. Ini berarti fetch() akan berjalan di latar belakang dan tidak akan memblokir eksekusi kode lainnya. Namun, jika kita ingin menunggu hingga response dari fetch() selesai sebelum melanjutkan eksekusi kode berikutnya, kita perlu menggunakan await.
+
+    Ketika kita menggunakan await pada fetch(), kita memberi tahu JavaScript untuk "menunggu" hingga fetch() selesai dan menghasilkan hasil, sebelum melanjutkan dengan baris kode berikutnya. Fungsi await hanya bisa digunakan di dalam async function, dan ini memastikan bahwa program kita berjalan secara berurutan meskipun beberapa operasi berlangsung.
+
+    Jika kita tidak menggunakan await, maka JavaScript akan langsung melanjutkan eksekusi kode berikutnya tanpa menunggu fetch() selesai. Akibatnya, bisa saja mendapatkan undefined atau Promise yang belum selesai saat mencoba mengakses hasil dari fetch().
+
+3. Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?
+    jenis serangan csrf-exempt ini, adalah berupa serangan yang memaksa masuk lewat autentikasi milik user.
+    agar user, tidak mendapatkan serangan yang memaksa mereka untuk melakukan aksi yang mereka(pelaku) inginkan, pada web yang sudah ter-autentikasi oleh user
+
+4.  Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
+    sebenarnya bisa saja, kita melakukan pembersihan di frontend, tetapi beberapa alasan seperti:
+    1. keamanan
+        frontend daat dimanipulasi oleh penyerang, dengan mematikan validasi frontend, dengan alat seperti developer tools.oleh karena itu, beckend harus memeriksa data dan membersihkannya untuk menghindari eksploitasi.
+    2. punya kendali penuh
+        backend lebih punya kontrol penuh karena di kelola langsung pada database server, sehingga dapat diandalkan karena diajalankan di lingkungan yang dikelola oleh aplikasi server.
+
+
+5. langkah langkah untuk memenuhi semua checklist pada Readme ini(bukan hanya dari tutorial):
+    Membuat view di backend
+
+    Langkah pertama adalah membuat fungsi view di Django yang akan menangani request AJAX dari frontend. Jika diperlukan, kita bisa menambahkan decorator @csrf_exempt agar view tersebut bisa menerima request POST tanpa masalah CSRF.
+    Membuat AJAX request di frontend
+
+    Di bagian frontend, kita akan membuat request menggunakan JavaScript dengan fetch(). Tujuannya adalah mengirim data ke backend tanpa me-refresh halaman. Kita perlu menggunakan await untuk menunggu respons dari server sebelum melanjutkan proses.
+    Membuat form di HTML
+
+    Form HTML yang kita buat akan digunakan untuk mengambil input dari pengguna. Saat form di-submit, fungsi JavaScript yang mengirim data via AJAX akan dipanggil, sehingga form tidak melakukan reload halaman.
+    Menambahkan validasi di backend
+
+    Setelah data dari form diterima di backend, langkah berikutnya adalah melakukan validasi. Misalnya, kita bisa memeriksa apakah input kosong atau melebihi panjang tertentu sebelum data tersebut disimpan ke dalam database.
+    Melakukan uji coba
+
+    Setelah semua bagian terpasang, kita lakukan uji coba untuk memastikan data bisa dikirim, divalidasi dengan benar, dan respons dari server muncul sesuai harapan di frontend.
+
+    
+    1. https://stackoverflow.com/questions/5207160/what-is-a-csrf-token-what-is-its-importance-and-how-does-it-work
+    2. https://laravel.com/docs/11.x/csrf
+    3. https://brightsec.com/blog/csrf-token/
+    4. https://dmitripavlutin.com/javascript-fetch-async-await/
+    5. https://stackoverflow.com/questions/67955033/async-await-with-fetch-js\
+    6. https://codeinstitute.net/global/blog/advantages-of-javascript/

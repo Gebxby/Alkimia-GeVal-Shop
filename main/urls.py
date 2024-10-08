@@ -1,5 +1,5 @@
 from django.urls import path
-from main.views import show_main, create_menu,show_xml,show_json,show_xml_by_id, show_json_by_id,register,login_user,logout_user,edit_menu,delete_menu
+from main.views import show_main, create_menu,show_xml,show_json,show_xml_by_id, show_json_by_id,register,login_user,logout_user,edit_menu,delete_menu, add_menu_by_ajax
 
 
 
@@ -17,6 +17,7 @@ urlpatterns = [
     path('logout/', logout_user, name='logout'),
     path('edit-menu/<uuid:id>', edit_menu, name='edit_menu'),
     path('delete/<uuid:id>', delete_menu, name='delete_menu'),
+    path('create-menu-by-ajax', add_menu_by_ajax, name='add_menu_by_ajax'),
     
     
 ]
